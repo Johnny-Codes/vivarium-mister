@@ -5,6 +5,7 @@
 #define RELAY_PIN  RPI_V2_GPIO_P1_13  // GPIO 27
 
 int main(int argc, char **argv) {
+
     if (!bcm2835_init()) {
         printf("BCM2835 init failed");
         return 1;
@@ -19,7 +20,7 @@ int main(int argc, char **argv) {
     bcm2835_gpio_fsel(RELAY_PIN, BCM2835_GPIO_FSEL_OUTP);
 
     int relay_state = 0;
-    int last_button_state = HIGH;
+    int last_button_state = LOW;
 
     while(1) {
         int button_state = bcm2835_gpio_lev(BUTTON_PIN);
